@@ -1,0 +1,27 @@
+@import "./components/global.scss";
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  background-color: $medium_purple;
+  font-family: $muli;
+  list-style: none;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.categories {
+  position: relative;
+}
+
+@import "./Media.scss";
