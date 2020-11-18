@@ -79,4 +79,7 @@ src/server/public
 mongoSchemas
 
 test/cypress/screenshots
+test/cypress/videos
+
 */screenshots
+*.mp4
