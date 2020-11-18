@@ -30,7 +30,7 @@ Cypress.Commands.add('registerUser', ({ name, email, password }) => {
   cy.get('[type="email"]').type(email);
   cy.get('[type="password"]').type(password);
   cy.contains('Registrarme').click();
-  cy.wait(3000);
+  cy.wait(2000);
   cy.url().should('match', /login/)
 })
 

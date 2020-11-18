@@ -17,7 +17,7 @@ describe('Pruebas de login', () => {
 
   it('Debe fallar el inicio de sesión con usuario inexistente', () => {
     cy.loginUser('fail@user.com', 'password')
-    cy.screenshot('login-user')
+    // cy.screenshot('login-user')
   })
 
   it('Debe iniciar sesión', () => {
@@ -27,8 +27,19 @@ describe('Pruebas de login', () => {
     })
   })
 
+  it('Debe cerrar sesión', () => {
+    cy.get('@UserData').then(({ email, password }) => {
+      cy.loginUser(email, password)
+      cy.get('.header--menu ul').then($el=>{
+        cy.wrap($el).invoke('show')
+        cy.contains('a', 'Cerrar sesión').click()
+        cy.wait(2000)
+        cy.url().should('match', /login/)
+      })
+    })
+  })
+
   after(() => {
     cy.log('Tests finalizados')
   })
-
 });
