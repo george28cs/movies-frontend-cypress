@@ -79,3 +79,4 @@ src/server/public
 mongoSchemas
 
 test/cypress/screenshots
+*/screenshots
