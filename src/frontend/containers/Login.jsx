@@ -63,9 +63,7 @@ const Login = (props) => {
           </div>
           <div className='register'>
             <p>
-              No tienes ninguna cuenta
-              {' '}
-              {' '}
+              No tienes cuenta? &nbsp;
               <Link to='/register'>Regístrate</Link>
             </p>
           </div>

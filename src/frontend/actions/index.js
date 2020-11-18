@@ -25,6 +25,15 @@ export const registerRequest = (payload) => ({
   payload,
 });
 
+export const registerSuccess = (payload) => ({
+  type: 'REGISTER_SUCCESS',
+  payload,
+});
+
+export const registerFail = () => ({
+  type: 'REGISTER_FAIL'
+});
+
 export const getVideoSource = (payload) => ({
   type: 'GET_VIDEO_SOURCE',
   payload,
@@ -38,6 +47,15 @@ export const getVideoSearch = (payload) => ({
 export const setError = (payload) => ({
   type: 'SET_ERROR',
   payload,
+});
+
+export const setMessage = (message) => ({
+  type: 'SET_MESSAGE',
+  payload: message,
+});
+
+export const clearMessage = () => ({
+  type: 'CLEAR_MESSAGE',
 });
 
 export const postFavorite = (userId, movieId, movie) => {
@@ -76,11 +94,24 @@ export const dropFavorite = (userMovieId, movieId) => {
 export const registerUser = (payload, redirectUrl) => {
   return (dispatch) => {
     axios.post('/auth/sign-up', payload)
-      .then(({ data }) => dispatch(registerRequest(data)))
+      .then(({ data }) => {
+        dispatch(registerRequest(data))
+      })
       .then(() => {
         window.location.href = redirectUrl;
       })
-      .catch((error) => dispatch(setError(error)));
+      .catch((error) => {
+        // const message =
+        // (error.response &&
+        //   error.response.data &&
+        //   error.response.data.message) ||
+        // error.message ||
+        // error.toString();
+        // dispatch(registerFail());
+        // dispatch(setMessage(message));
+        dispatch(setError(error))
+      }
+      );
   };
 };
 
@@ -103,6 +134,8 @@ export const loginUser = ({ email, password }, redirectUrl) => {
       .then(() => {
         window.location.href = redirectUrl;
       })
-      .catch((err) => dispatch(setError(err)));
+      .catch((err) => {
+        dispatch(setError(err))
+      });
   };
 };

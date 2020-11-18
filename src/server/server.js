@@ -162,7 +162,6 @@ app.post('/auth/sign-in', async (req, res, next) => {
           httpOnly: !(ENV === 'development'),
           secure: !(ENV === 'development'),
         });
-
         res.status(200).json(user);
       });
     } catch (err) {
@@ -175,7 +174,7 @@ app.post('/auth/sign-up', async (req, res, next) => {
   const { body: user } = req;
 
   try {
-    const userData = await axios({
+    const userRegister = await axios({
       url: `${process.env.API_URL}/api/auth/sign-up`,
       method: 'post',
       data: {
@@ -184,17 +183,20 @@ app.post('/auth/sign-up', async (req, res, next) => {
         'password': user.password,
       },
     });
-
     res.status(201).json({
       name: req.body.name,
       email: req.body.email,
-      id: userData.data.id,
+      id: userRegister.data.id,
     });
   } catch (error) {
-    next(error);
+    console.log('Error:', error.message)
+    res.status(500).json({
+      message: error.message
+    });
   }
 });
 
+// eslint-disable-next-line consistent-return
 app.post('/user-movies', async (req, res, next) => {
   try {
     const { body: userMovie } = req;
@@ -217,6 +219,7 @@ app.post('/user-movies', async (req, res, next) => {
   }
 });
 
+// eslint-disable-next-line consistent-return
 app.delete('/user-movies/:userMovieId', async (req, res, next) => {
   try {
     const { userMovieId } = req.params;

@@ -56,13 +56,6 @@ const Register = (props) => {
               placeholder='Contraseña'
               onChange={handleInput}
             />
-            {/* <input
-              name='passwordVerified'
-              type='password'
-              className='login--form__input'
-              placeholder='Repetir contraseña'
-              onChange={handleInput}
-            /> */}
             <button type='submit' className='login--form_button'>Registrarme</button>
           </form>
           <div className='back-login'>
@@ -77,5 +70,4 @@ const Register = (props) => {
 const mapDispatchToProps = {
   registerUser,
 };
-
 export default connect(null, mapDispatchToProps)(Register);

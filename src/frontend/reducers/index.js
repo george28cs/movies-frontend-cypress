@@ -29,6 +29,20 @@ const reducer = (state, action) => {
         ...state,
         user: action.payload,
       };
+    case 'REGISTER_SUCCESS':
+      return {
+        ...state,
+        isLoggedIn: false,
+      };
+    case 'REGISTER_FAIL':
+      return {
+        ...state,
+        isLoggedIn: false,
+      };
+    case 'SET_MESSAGE':
+      return { message: action.payload };
+    case 'CLEAR_MESSAGE':
+      return { message: '' };
     case 'GET_VIDEO_SOURCE':
       return {
         ...state,
