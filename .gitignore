@@ -82,4 +82,5 @@ test/cypress/screenshots
 test/cypress/videos
 
 */screenshots
+*/videos
 *.mp4
